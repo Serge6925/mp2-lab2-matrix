@@ -107,7 +107,7 @@ public:
     const T& at(size_t ind) const
     {
         if ((0 <= ind) && (ind < sz))
-            return const &(this->pMem[ind]);
+            return &(this->pMem[ind]);
         else
             throw exception();
     }
@@ -170,7 +170,7 @@ public:
             a.pMem[i] = this->pMem[i] - v.pMem[i];
         return a;
     }
-    T operator*(const TDynamicVector& v) noexcept(noexcept(T()))
+    T operator*(const TDynamicVector& v)
     {
         if (sz != v.sz)
             throw exception();
@@ -274,9 +274,9 @@ public:
     {
         if (sz != m.sz) throw exception();
         TDynamicMatrix NewM(sz);
-        for (int i = 0; i < M.N; i++)
-            for (int j = 0; j < M.N; j++)
-                for (int k = 0; k < N; k++)
+        for (int i = 0; i < sz; i++)
+            for (int j = 0; j < sz; j++)
+                for (int k = 0; k < sz; k++)
                      NewM.pMem[i][j] += pMem[i][k] * m.pMem[k][j];
         return NewM;
     }
