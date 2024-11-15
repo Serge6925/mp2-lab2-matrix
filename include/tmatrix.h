@@ -39,6 +39,7 @@ public:
     }
     TDynamicVector(const TDynamicVector& v)
     {
+        sz = v.sz;
         this->pMem = new T[v.sz]();
         for (int i = 0; i < v.sz; i++)
             pMem[i] = v.pMem[i];
@@ -69,7 +70,10 @@ public:
     TDynamicVector& operator=(TDynamicVector&& v) noexcept
     {
         if (&v == this)
+        {
+            v.pMem = nullptr;
             return *this;
+        }
         delete[] this->pMem;
         sz = v.sz;
         this->pMem = v.pMem;
