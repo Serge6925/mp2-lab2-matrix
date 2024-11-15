@@ -170,7 +170,7 @@ public:
             a.pMem[i] = this->pMem[i] - v.pMem[i];
         return a;
     }
-    T operator*(const TDynamicVector& v) noexcept(noexcept(T()))
+    T operator*(const TDynamicVector& v)
     {
         if (sz != v.sz)
             throw exception();
